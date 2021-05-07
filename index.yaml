@@ -1,5 +1,16 @@
 apiVersion: v1
 entries:
+  owasp-zap2docker:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2021-05-07T23:12:59.212871+02:00"
+    description: A Helm chart for the OWASP Zap2Docker UI and Daemon
+    digest: 9fb8103311f39a23bec4a5eb1eaa3fb2df6aad1ac841865b29e92cf0bc13e561
+    name: owasp-zap2docker
+    type: application
+    urls:
+    - https://github.com/lreimer/helm-charts/releases/download/owasp-zap2docker-1.0.0/owasp-zap2docker-1.0.0.tgz
+    version: 1.0.0
   selenium-hub:
   - apiVersion: v2
     appVersion: 3.141.59
@@ -11,4 +22,4 @@ entries:
     urls:
     - https://github.com/lreimer/helm-charts/releases/download/selenium-hub-1.0.0/selenium-hub-1.0.0.tgz
     version: 1.0.0
-generated: "2021-05-07T22:09:16.020103+02:00"
+generated: "2021-05-07T23:12:59.212882+02:00"
