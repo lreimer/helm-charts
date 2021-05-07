@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ include "owasp-zap2docker.fullname" . }}-gui
+  {{- with .Values.podAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  labels:
+    {{- include "owasp-zap2docker.labels" . | nindent 4 }}
+    mode: "gui"
+spec:
+  serviceAccountName: {{ include "owasp-zap2docker.serviceAccountName" . }}
+  containers:
+    - name: {{ .Chart.Name }}-gui
+      image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+      imagePullPolicy: {{ .Values.image.pullPolicy }}
+      args: ['zap-webswing.sh']
+      ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP

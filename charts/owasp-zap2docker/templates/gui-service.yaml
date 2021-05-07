@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "owasp-zap2docker.fullname" . }}-gui
+  labels:
+    {{- include "owasp-zap2docker.labels" . | nindent 4 }}
+    mode: "gui"
+spec:
+  type: {{ .Values.guiService.type }}
+  ports:
+    - port: {{ .Values.guiService.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "owasp-zap2docker.selectorLabels" . | nindent 4 }}
+    mode: "gui"

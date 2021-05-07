@@ -1,0 +1,4 @@
+1. Get the ZAP GUI service port by running these commands:
+  export PORT=`kubectl get service {{ include "owasp-zap2docker.fullname" . }}-gui -n {{ .Release.Namespace }} -o=json | jq -r '.spec.ports[] | select (.name | test("http")) | .nodePort'`
+2. Open the ZAP GUI in your browser
+  open http://localhost:$PORT/zap  

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ include "owasp-zap2docker.fullname" . }}-api
+  {{- with .Values.podAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  labels:
+    {{- include "owasp-zap2docker.labels" . | nindent 4 }}
+    mode: "api"
+spec:
+  serviceAccountName: {{ include "owasp-zap2docker.serviceAccountName" . }}
+  containers:
+    - name: {{ .Chart.Name }}-api
+      image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+      imagePullPolicy: {{ .Values.image.pullPolicy }}
+      args: ['zap.sh', '-daemon', '-port', '8090', '-host', '0.0.0.0', '-config', 'api.addrs.addr.name=.*', '-config', 'api.addrs.addr.regex=true', '-config', 'api.key=1qay2wsx']
+      ports:
+        - name: http
+          containerPort: 8090
+          protocol: TCP

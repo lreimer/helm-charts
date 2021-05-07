@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "owasp-zap2docker.fullname" . }}-api
+  labels:
+    {{- include "owasp-zap2docker.labels" . | nindent 4 }}
+    mode: "api"
+spec:
+  type: {{ .Values.apiService.type }}
+  ports:
+    - port: {{ .Values.apiService.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "owasp-zap2docker.selectorLabels" . | nindent 4 }}
+    mode: "api"

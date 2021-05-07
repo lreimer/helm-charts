@@ -1,0 +1,26 @@
+# Default values for owasp-zap2docker.
+
+image:
+  repository: owasp/zap2docker-weekly
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+guiService:
+  type: NodePort
+  port: 8080
+
+apiService:
+  type: NodePort
+  port: 8090
