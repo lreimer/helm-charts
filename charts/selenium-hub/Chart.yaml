@@ -1,0 +1,6 @@
+apiVersion: v2
+name: selenium-hub
+description: A Helm chart for Selenium Hub
+type: application
+version: 1.0.0
+appVersion: "3.141.59"

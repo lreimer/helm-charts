@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: selenium-node-firefox
+  labels:
+    {{- include "selenium-hub.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: selenium-node-firefox
+  template:
+    metadata:
+      labels:
+        app: selenium-node-firefox
+    spec:
+      volumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
+      containers:
+      - name: selenium-node-firefox
+        image: selenium/node-firefox-debug:{{ .Values.image.tag | default .Chart.AppVersion }}
+        ports:
+          - containerPort: 5900
+        volumeMounts:
+          - mountPath: /dev/shm
+            name: dshm
+        env:
+          - name: HUB_HOST
+            value: {{ include "selenium-hub.fullname" . }}
+          - name: HUB_PORT
+            value: "{{ .Values.service.port }}"
+        resources:
+          limits:
+            memory: "1000Mi"
+            cpu: ".5"

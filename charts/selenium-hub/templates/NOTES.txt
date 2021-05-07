@@ -1,0 +1,2 @@
+1. Use port forwarding to access Selenium Hub
+  $ kubectl port-forward service/{{ include "selenium-hub.fullname" . }} {{ .Values.service.port }} ---namespace {{ .Release.Namespace }}
