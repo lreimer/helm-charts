@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  selenium-hub:
+  - apiVersion: v2
+    appVersion: 3.141.59
+    created: "2021-05-07T22:09:16.020073+02:00"
+    description: A Helm chart for Selenium Hub
+    digest: a3c894ec086499293e3e21b41e604c5c7050167f5e370393fa429b96ccdc0e16
+    name: selenium-hub
+    type: application
+    urls:
+    - https://github.com/lreimer/helm-charts/releases/download/selenium-hub-1.0.0/selenium-hub-1.0.0.tgz
+    version: 1.0.0
+generated: "2021-05-07T22:09:16.020103+02:00"
