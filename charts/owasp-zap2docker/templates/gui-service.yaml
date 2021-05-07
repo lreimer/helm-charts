@@ -13,5 +13,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "owasp-zap2docker.selectorLabels" . | nindent 4 }}
+    {{- include "owasp-zap2docker.labels" . | nindent 4 }}
     mode: "gui"
